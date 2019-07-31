@@ -3,16 +3,16 @@ import pandas as pd
 import numpy as np
 
 
-RiskLevel={'stock':5,
-债券类	2
-实物资产	3
-货币类	1.5
-stock fund	4
-trust	4
-bfp	3
-bfp(bond)	2
-gov bond	1
-'}
+RiskLevel={'Stock':5,
+'债券类':2,
+'实物资产':3,
+'货币类':1.5,
+'StockFund':4,
+'Trust':4,
+'bfp':3,
+'bfp(bond)':2,
+'govbond':1,
+}
 
 class MetaAssets(object):
 
