@@ -29,33 +29,41 @@ from functools import reduce
 
 
 class CalPoriorViews_STEP1(object):
+	def __init__(self,risk_aversion_coefficient,cov_matrix,w_mkt):
+		self.pai = self.implied_market_equilibrium_return(risk_aversion_coefficient,
+		cov_matrix,w_mkt)
+		pass
+
 	@staticmethod
-	def risk_aversion_parameters(sigma=2.5):
+	def risk_aversion_coefficient(sigma=2.5):
 		return sigma
 
-
-
-
-	
 	@staticmethod
 	def cov_matrix(assets_return):
 		return assets_return.cov()
+		
+	@staticmethod
+	def market_equlilbrium_weights(w_mkt):
+		return w_mkt
+		
+	@staticmethod
+	def implied_market_equilibrium_return(sigma,cov,w_eq):# pai
+		# Equilibrium Excess Returns
+		return reduce(np.dot,[sigma,cov,w_eq])
+		
+class SetViews_Step2(object):
 	
-def market_equlilbrium_weights():
-	return w_eq
+	@staticmethod
+	def views_matrix(P):
+		return P
+	@staticmethod
+	def new_views_return(Q):
+		return Q
+	@staticmethod
+	def view_confidnt_level(big_omega):
+		return big_omega
 	
-def views_matrix():
-	return P
 
-def new_views_return():
-	return Q
-	
-def view_confidnt_level():
-	return big_omega
-	
-def implied_market_equilibrium_return(sigma,cov,w_eq):# pai
-	# Equilibrium Excess Returns
-	return reduce(np.dot,[sigma,cov,w_eq])
 	
 	
 def implied_market_equilibrium_variance(tao,big_omega):
