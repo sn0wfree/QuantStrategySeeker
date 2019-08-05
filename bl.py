@@ -84,30 +84,47 @@ class SetViews_Step2(object):
 	"""
 	@staticmethod
 	def views_matrix(P):
-	
-	
 		return P
 	@staticmethod
 	def new_views_return(Q):
 		return Q
 	@staticmethod
-	def view_confidnt_level(big_omega):
-		return big_omega
+	def view_confidnt_level(cf_array):
+		return np.diag(pow(big_omega,2))
 	
 
 	
 	
-def implied_market_equilibrium_variance(tao,big_omega):
-	return np.dot(tao,big_omega)
+# def implied_market_equilibrium_variance(tao,big_omega):
+# 	return np.dot(tao,big_omega)
 	
-	
-def expected_return(tao,big_omega,P,Q,sigma, cov,w_eq):
-	
-	pai = implied_market_equilibrium_return(sigma,cov,w_eq)
-	
-	big_s
+class cal_post_return(object):
+	@staticmethod
+	def reduce_func(func,tasks):
+		return reduce(func,tasks)
+	@classmethod
+	def expected_return(cls, tao,big_omega,P,Q,sigma, cov,w_eq):
 
-	E_bl=((tao*epsi).I+P.T*omega.I*P).I*((tao*epsi).I*pai+P.T*omega.I*Q)
+		pai = implied_market_equilibrium_return(sigma,cov,w_eq)
+
+		M = cls.cal_M((tao,epsi,P,big_omega)
+		PIbig_omegaIQ  = reduce_func(np.dot,[P.T,big_omega.I,Q]
+
+		E_bl=M * (tao_epsi_I * pai +PIbig_omegaIQ)
+		return 	E_bl	
+	@staticmethod			     
+	def cal_M(tao,epsi,P,big_omega):
+		tao_epsi_I =(tao*epsi).I
+		PIbig_omegaIP  = reduce_func(np.dot,[P.T,big_omega.I,P)
+		return ( tao_epsi_I + PIbig_omegaIP).I
+	@staticmethod					     
+	def cal_port_cov_matrix(epsi,M):
+		return epsi + M
+	@staticmethod					     
+	def cal_asset_weight(sigma,port_cov_matrix,pai):
+		return np.dot((sigma*port_cov_matrix).I ,pai)
+						     
+					     
 
 	
 
