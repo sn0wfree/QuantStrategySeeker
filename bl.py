@@ -26,7 +26,8 @@ debug_mode=0
 
 from functools import reduce
 
-
+#tao ->0
+tao = 0.05 # or  tao = K/N K为有主观分析的种类数，N为总种类数
 
 class CalPoriorViews_STEP1(object):
 	def __init__(self,risk_aversion_coefficient,cov_matrix,w_mkt):
@@ -52,9 +53,39 @@ class CalPoriorViews_STEP1(object):
 		return reduce(np.dot,[sigma,cov,w_eq])
 		
 class SetViews_Step2(object):
+	"""
+	观点1：A资产绝对收益为10%，信心水平50%； 
+	观点2：B资产比C资产收益率高5%，信心水平60%； 
+	观点3：D、E资产比F、G、H资产收益高2%，信心水平90%
 	
+	* 看法为正面的之和为1，看法为 负面的之和为-1
+	
+	P
+	|资产A|资产B|资产C|资产D|资产E|资产F|资产G|资产H|
+	|-----|-----|-----|-----|-----|-----|-----|-----|
+	|1|0|0|0|0|0|0|0|0|0|0|0|
+	|0|1|-1|0|0|0|0|0|0|0|0|0|
+	|0|0|0|0.5|0.5|-1/3|-1/3|-1/3|-1/3|-1/3|0|0|
+	
+	Q = [10%,5%,2%].T
+	
+	SIGMA = [[50%**2,0,0],
+			 [0,60%**2 ],
+			 [0,0, 90%**2]]
+			 
+	 tao = K/N K为有主观分析的种类数，N为总种类数
+			 
+	K = 3
+	
+			 
+			 
+	
+	
+	"""
 	@staticmethod
 	def views_matrix(P):
+	
+	
 		return P
 	@staticmethod
 	def new_views_return(Q):
